@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "vercel": "^28.10.3"
+    "spotify-web-api-node": "^5.0.2",
+    "vercel": "^28.10.3",
+    "yt-search": "^2.10.3",
+    "ytdl-core": "^4.11.2"
   }
 }
