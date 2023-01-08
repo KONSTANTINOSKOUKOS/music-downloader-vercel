@@ -6,4 +6,4 @@ const api = new Spotify({
     redirectUri: 'https://music-downloader-pi.vercel.app/login'
 });
 
-module.exports = api;
+module.exports = api
