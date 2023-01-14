@@ -22,5 +22,6 @@
                 }
             ]
         }
-    ]
+    ],
+"redirects": [{"source": "/", "destination": "/api", "permanent": true}]
 }
