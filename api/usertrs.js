@@ -6,7 +6,8 @@ const formattrack = (res) => {//used in other format()'s
         duration: res.duration_ms,
         id: res.id,
         artist: res.artists[0].name,
-        image: res.album.images[0].url
+        image: res.album.images[0].url,
+        preview: res.preview_url
     };
 };
 

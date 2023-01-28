@@ -8,6 +8,7 @@ const formatalbum = (res) => {//for /album
             duration: el.duration_ms,
             id: el.id,
             artist: el.artists[0].name,
+            preview: el.preview_url
         });
     });
     return {
