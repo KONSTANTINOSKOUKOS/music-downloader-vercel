@@ -26,8 +26,9 @@ export default async function (req, res) {
                 res
                     .setHeader('Content-Length', stats.size)
                     .setHeader('Content-Type', 'audio/mpeg')
-                    .setHeader('Content-Disposition', `attachment; filename=${req.query.id}.mp3`)
-                    .send(data, 'binary');
+                    .setHeader('Content-Disposition', `attachment; filename=${req.query.id}.mp3`);
+                res.write(data, 'binary');
+                res.end();
             });
         });
 }
