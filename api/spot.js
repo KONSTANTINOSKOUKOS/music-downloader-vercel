@@ -2,7 +2,7 @@ import api from "../spotify";
 import ytdl from "ytdl-core";
 import { search } from "yt-search";
 
-import { createWriteStream } from "fs";
+import { createWriteStream, statSync, readFile } from "fs";
 
 export default async function (req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -25,7 +25,23 @@ export default async function (req, res) {
 
     console.log(url);
 
+    const name = `tmp/${id}.mp3`;
+    console.log(name);
+
     ytdl(url, { format: 'highestaudio', filter: 'audioonly' })
-        .pipe(createWriteStream(`tmp/${id}.mp3`))
-        .on('finish', () => res.download(`tmp/${id}.mp3`));
+        .pipe(createWriteStream(name))
+        .on('finish', () => {
+            console.log('finished');
+            const stats = statSync(name);
+            console.log(stats.size);
+            readFile(name, { encoding: 'binary', flag: 'r' }, (err, data) => {
+                if (err) console.log(err);
+                res
+                    .setHeader('Content-Length', stats.size)
+                    .setHeader('Content-Type', 'audio/mpeg')
+                    .setHeader('Content-Disposition', `attachment; filename=${req.query.id}.mp3`)
+                    .write(data, 'binary')
+                    .end();
+            });
+        });
 }
