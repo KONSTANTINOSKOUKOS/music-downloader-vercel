@@ -25,7 +25,7 @@ export default async function (req, res) {
 
     console.log(url);
 
-    const name = `tmp/${id}.mp3`;
+    const name = `/tmp/${id}.mp3`;
     console.log(name);
 
     ytdl(url, { format: 'highestaudio', filter: 'audioonly' })

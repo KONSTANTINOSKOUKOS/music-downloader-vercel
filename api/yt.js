@@ -12,7 +12,7 @@ export default async function (req, res) {
         return;
     }
 
-    const name = `tmp/${req.query.id}.mp3`;
+    const name = `/tmp/${req.query.id}.mp3`;
     console.log(name);
 
     ytdl(`https://www.youtube.com/watch?v=${req.query.id}`, { filter: 'audioonly', quality: 'highestaudio' })
