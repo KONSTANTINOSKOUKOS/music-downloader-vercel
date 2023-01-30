@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "firebase": "^9.16.0",
     "spotify-web-api-node": "^5.0.2",
     "vercel": "^28.14.0",
     "yt-search": "^2.10.3",
