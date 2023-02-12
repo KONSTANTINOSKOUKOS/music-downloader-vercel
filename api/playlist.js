@@ -3,7 +3,7 @@ import api from "../spotify";
 const formattrack = (res) => {//used in other format()'s
     return {
         name: res.name,
-        duration: res.duration_ms,
+        duration: Math.floor(res.duration_ms / 1000),
         id: res.id,
         artist: res.artists[0].name,
         image: res.album.images[0].url,

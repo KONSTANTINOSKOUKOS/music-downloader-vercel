@@ -5,7 +5,7 @@ const formatalbum = (res) => {//for /album
     res.tracks.items.forEach(el => {
         tracks.push({//no image bcz all the same
             name: el.name,
-            duration: el.duration_ms,
+            duration: Math.floor(el.duration_ms / 1000),
             id: el.id,
             artist: el.artists[0].name,
             preview: el.preview_url
