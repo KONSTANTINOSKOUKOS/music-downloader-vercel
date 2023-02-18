@@ -22,7 +22,7 @@ export default async function (req, res) {
         if (files.length == 0) return console.log('no files in /tmp');
 
         for (const file of files) {
-            unlink(join('/tmp/', file), (err) => {
+            unlink(join('/tmp/', file.name), (err) => {
                 if (err) console.log(err)
                 console.log('deleted a file');
             });
