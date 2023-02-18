@@ -4,7 +4,8 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import ytdl from "ytdl-core";
 import { search } from "yt-search";
 
-import { createWriteStream, readFile } from "fs";
+import { createWriteStream, readFile, readdir, unlink } from "fs";
+import { join } from "path";
 
 export default async function (req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -15,6 +16,18 @@ export default async function (req, res) {
         res.status(200).end();
         return;
     }
+
+    readdir(`/tmp/`, { withFileTypes: true }, (err, files) => {
+        if (err) return console.log(err);
+        if (files.length == 0) return console.log('no files in /tmp');
+
+        for (const file of files) {
+            unlink(join('/tmp/', file), (err) => {
+                if (err) console.log(err)
+                console.log('deleted a file');
+            });
+        }
+    });
 
     api.setAccessToken(req.query.token);
     const data = await api.getTrack(req.query.id);
