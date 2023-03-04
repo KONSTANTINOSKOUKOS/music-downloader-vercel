@@ -19,13 +19,16 @@ export default async function (req, res) {
 
     readdir(`/tmp/`, { withFileTypes: true }, (err, files) => {
         if (err) return console.log(err);
-        if (files.length == 0) return console.log('no files in /tmp');
-
-        for (const file of files) {
-            unlink(join('/tmp/', file.name), (err) => {
-                if (err) console.log(err)
-                console.log('deleted a file');
-            });
+        if (files.length == 0) {
+            return console.log('no files in /tmp');
+        }
+        else {
+            for (const file of files) {
+                unlink(join('/tmp/', file.name), (err) => {
+                    if (err) console.log(err)
+                    console.log('deleted a file');
+                });
+            }
         }
     });
 
